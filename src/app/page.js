@@ -17,18 +17,15 @@ export default function Home() {
   }
   if (!user) {
     return (
-      <html>
-        <body>
+   
           <ChakraProvider>
             <Login />
           </ChakraProvider>
-        </body>
-      </html>
+       
     );
   }
   return (
-    <html lang="en">
-      <body>
+    
         <ChakraProvider>
           <Flex>
             <Box h='100vh'>
@@ -36,7 +33,6 @@ export default function Home() {
             </Box>
           </Flex>
         </ChakraProvider>
-      </body>
-    </html>
+    
   );
 }

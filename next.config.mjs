@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+export async function headers() {
+    return [
+        {
+            source: "/login",
+            headers: [
+                {
+                    key: "Cross-Origin-Embedder-Policy",
+                    value: "unsafe-none",
+                },
+            ],
+        },
+    ];
+}

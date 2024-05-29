@@ -1,19 +1,29 @@
 import { ArrowDownIcon } from "@chakra-ui/icons";
 import { Avatar, Button, Flex, IconButton, Text } from "@chakra-ui/react";
 import { signOut } from "firebase/auth";
-import { auth } from "../../../firebaseconfig";
+import { auth, db } from "../../../firebaseconfig";
 import { useAuthState } from 'react-firebase-hooks/auth';
-const Chat=()=>{
-    return(
-        <Flex p={3} align='center' _hover={{bg:"gray.100",cursor:"pointer"}}>
-            <Avatar src="" margin={3}/>
-            <Text>user@gmail.com</Text>
-        </Flex>
-    )
-}
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { collection } from "firebase/firestore";
+import getOtherEmail from "../../../utils/getOtherEmail";
 
 export default function Sidebar() {
+    const [snapshot, loading, error] = useCollection(collection(db,'chats'));
     const [user] = useAuthState(auth);
+    console.log(snapshot)
+    const chats=snapshot?.docs.map(doc=>({id:doc.id,...doc.data()}));
+
+    const chatList=()=>{
+        return(
+            chats?.map( chat=>
+                <Flex key={chat.id} p={3} align='center' _hover={{bg:"gray.100",cursor:"pointer"}}>
+                <Avatar src="" margin={3}/>
+                <Text>{getOtherEmail(chat.users,user)}</Text>
+            </Flex>
+            )
+            
+        )
+    }
   return (
     <>
       <Flex
@@ -41,19 +51,7 @@ export default function Sidebar() {
         </Flex>
         <Button m={5} p={4} >New Chat</Button>
         <Flex overflowX='scroll' direction='column' sx={{scrollbarWidth:'none'}} flex={1}> 
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
+       {chatList()}
 
         </Flex>
       
