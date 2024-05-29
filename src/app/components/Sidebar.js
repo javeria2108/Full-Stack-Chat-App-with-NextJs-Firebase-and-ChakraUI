@@ -14,15 +14,15 @@ export default function Sidebar() {
   return (
     <>
       <Flex
-        bg="blue.100"
+        // bg="blue.100"
         w="300px"
-        h="100vh"
+        h='100vh'
         borderEnd="1px solid"
         borderColor="gray.200"
         direction='column'
       >
         <Flex
-          bgColor="red.200"
+        //   bgColor="red.200"
           h="81px"
           w="100%"
           align="center"
@@ -37,7 +37,7 @@ export default function Sidebar() {
           <IconButton size="sm" isRound icon={<ArrowDownIcon />}></IconButton>
         </Flex>
         <Button m={5} p={4} >New Chat</Button>
-        <Flex overflowX='scroll' direction='column' sx={{scrollbarWidth:'none'}}> 
+        <Flex overflowX='scroll' direction='column' sx={{scrollbarWidth:'none'}} flex={1}> 
         <Chat/>
         </Flex>
       
