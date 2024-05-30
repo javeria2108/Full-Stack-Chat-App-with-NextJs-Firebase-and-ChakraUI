@@ -12,9 +12,7 @@ export default function RootLayout({ children }) {
         <title>Chat App</title>
       </Head>
       <body>
-        <ChakraProvider>
-            {children}
-        </ChakraProvider>
+        <ChakraProvider>{children}</ChakraProvider>
       </body>
     </html>
   );

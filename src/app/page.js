@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import Sidebar from "./components/Sidebar";
 import Login from "./components/login";
-import { Center, ChakraProvider, Flex, Spinner,Box } from "@chakra-ui/react";
+import { Center, ChakraProvider, Flex, Spinner, Box } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseconfig";
 export default function Home() {
@@ -17,22 +17,18 @@ export default function Home() {
   }
   if (!user) {
     return (
-   
-          <ChakraProvider>
-            <Login />
-          </ChakraProvider>
-       
+      <ChakraProvider>
+        <Login />
+      </ChakraProvider>
     );
   }
   return (
-    
-        <ChakraProvider>
-          <Flex>
-            <Box h='100vh'>
-            <Sidebar />
-            </Box>
-          </Flex>
-        </ChakraProvider>
-    
+    <ChakraProvider>
+      <Flex>
+        <Box h="100vh">
+          <Sidebar />
+        </Box>
+      </Flex>
+    </ChakraProvider>
   );
 }
